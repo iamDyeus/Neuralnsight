@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Model Playground</title>
+    <meta name="description" content="Model Playground - Test Capabilities of our Brain Tumor Detection Model">
+    <meta name="keywords" content="Neuralnsight,Machine Learning, Artificial Intelligence,brain, brain tumor detection, brain tumor">
+    <meta name="author" content="Neuralnsight">
+    <link rel="canonical" href="https://github.com/iamDyeus/neuralnsight">
+
+    <!-- Open Graph Protocol for social media sharing -->
+    <meta property="og:title" content="Neuralnsight - Brain Tumor Detection">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://github.com/iamDyeus/neuralnsight">
+    <meta property="og:image" content="static/assets/brain_cartoon.jpg">
+    <meta property="og:description" content="Neuralnsight - Pioneering the Future of Brain Wellness">
+
+    <!-- Twitter Card for Twitter sharing -->
+    <meta name="twitter:card" content="static/assets/brain_cartoon.jpg">
+    <meta name="twitter:title" content="Neuralnsight - Brain Tumor Detection">
+    <meta name="twitter:description" content="Neuralnsight - Pioneering the Future of Brain Wellness">
+    
+    
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
+    <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
+
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.16/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://www.joerezendes.com/projects/Woah.css/woah.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="{{ url_for('static', filename='js/toast.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/model.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.0.0/flowbite.min.js"></script>
+
+
+
+  </head>
+<body>
+
+  <!--  NAVBAR  -->
+    {% include "nav.html" %}
+  <!--  NAVBAR END -->
+
+  
+
+
+  <div class="bg-white pb-12 sm:pb-8 lg:pb-24 ">
+    <div class="mx-auto max-w-screen-2xl px-4 md:px-8 items-center text-center ">
+
+      <form id="upload-file" method="post" enctype="multipart/form-data">
+        <label class=" block mb-2 text-sm font-medium text-gray-900 dark:text-white py-8" for="imageUpload">Add MRI Scan Below</label>
+
+    
+        <div id="dropzone" class=" dropzone flex items-center justify-center ">
+          <label for="imageUpload" class="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
+              <div class="flex flex-col items-center justify-center pt-5 pb-6">
+                  <svg class="w-8 h-8 mb-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 16">
+                      <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"/>
+                  </svg>
+                  <p class="mb-2 text-sm text-gray-500 dark:text-gray-400"><span class="font-semibold">Click to upload</span> or drag and drop</p>
+                  <p class="text-xs text-gray-500 dark:text-gray-400">PNG, JPG or JPEG (MAX. 800x400px)</p>
+              </div>
+              <input id="imageUpload" type="file" name="file"  id="imageUpload" accept=".png, .jpg, .jpeg" class="hidden" />
+          </label>
+        </div> 
+        
+
+        <!-- <input class="text-lg text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 
+        dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 
+        dark:placeholder-gray-400 btn btn-success woah pulse" id="imageUpload" type="file" name="file"  id="imageUpload" accept=".png, .jpg, .jpeg"> -->
+      </form>
+
+      <div class="image-section" style="display:none;" class="">
+        <center>
+        <img id="imagePreview"  class="img-responsive" src="#" style="width:300px;height:300px;" class="h-full w-full object-cover object-center"/><br><br>
+        </center>
+
+        <div class="button-prediction">
+          <button type="button" class="btn btn-info btn-lg inline-block rounded-lg bg-indigo-500 px-8 py-3 text-center text-sm font-semibold text-white outline-none ring-indigo-300 transition duration-100 hover:bg-indigo-600 focus-visible:ring active:bg-indigo-700 md:text-base" id="btn-predict">
+            Check For Brain Tumor
+          </button>
+
+        </div>
+      
+      </div>
+      <div class="loader" style="display:none;"></div>
+      <h3 id="result">
+          <span> </span>
+      </h3>
+    </div>
+  </div>
+  
+
+  <!-- Images Showcase -->
+  <section class="mx-auto max-w-screen-2xl px-4 md:px-8">
+    <div class="mb-8 flex flex-wrap justify-between md:mb-16">
+      <div class="mb-6 flex w-full flex-col justify-center sm:mb-12 lg:mb-0 lg:w-1/3 lg:pb-24 lg:pt-48">
+        <h1 class="mb-4 text-4xl font-bold text-black sm:text-5xl md:mb-8 md:text-6xl">Use Correct MRI Images For Best Results</h1>
+
+        <p class="max-w-md leading-relaxed text-gray-500 xl:text-lg">
+          Ensuring accurate and reliable results in our system, begins with the quality of the input data. When it comes to detecting 
+          brain tumors using Magnetic Resonance Imaging technology, the selection of the right images is paramount.
+        </p>
+      </div>
+
+      <div class="mb-12 flex w-full md:mb-16 lg:w-2/3">
+        <div class="relative left-12 top-12 z-10 -ml-12 overflow-hidden rounded-lg bg-gray-100 shadow-lg md:left-16 md:top-16 lg:ml-0 woah fadeIn">
+          <img src="static/assets/negative_tumor.jpg" loading="lazy" alt="No Brain Tumor" class="h-full w-full object-cover object-center" />
+        </div>
+
+        <div class="overflow-hidden rounded-lg bg-gray-100 shadow-lg woah fadeIn">
+          <img src="static/assets/positive_tumor.jpg" loading="lazy" alt="Brain Tumor" class="h-full w-full object-cover object-center" />
+        </div>
+      </div>
+    </div>
+                      
+                
+
+    <div class="bg-white py-6 sm:py-8 lg:py-12">
+      <div class="mx-auto max-w-screen-2xl px-4 md:px-8">
+        <div class="flex flex-col overflow-hidden rounded-lg bg-gray-200 sm:flex-row md:h-80">
+          <!-- image - start -->
+          <div class="order-first h-48 w-full bg-gray-300 sm:order-none sm:h-auto sm:w-1/2 lg:w-2/5 woah fadeIn">
+            <img src="static/assets/cartoon_github.jpg" loading="lazy" alt="Brain Mascot for Github" class="h-full w-full object-cover object-center" />
+          </div>
+          <!-- image - end -->
+    
+          <!-- content - start -->
+          <div class="flex w-full flex-col p-4 sm:w-1/2 sm:p-8 lg:w-3/5">
+            <h2 class="mb-4 text-xl font-bold text-gray-800 md:text-2xl lg:text-4xl">Open for Contributions</h2>
+    
+            <p class="mb-8 max-w-md text-gray-600">
+              I believe in the power of collaboration and welcome contributions from the community to make this project even better. 
+              This project is open-source, which means anyone can view, use, modify, 
+              and distribute the source code. I encourage developers, designers, and enthusiasts to get involved and contribute to the project.
+            </p>
+    
+            <div class="mt-auto">
+              <a href="https://github.com/iamDyeus/neuralnsight" class="inline-block rounded-lg bg-white px-8 py-3 text-center text-sm font-semibold text-gray-800 outline-none ring-indigo-300 transition duration-100 hover:bg-gray-100 focus-visible:ring active:bg-gray-200 md:text-base">Github Repo</a>
+            </div>
+          </div>
+          <!-- content - end -->
+        </div>
+      </div>
+    </div>
+    
+
+    <!-- Footer -->
+    {% include "footer.html" %}
+      
+      
+
+    
+
+      <!-- TOAST NOTIFICATION -->
+      <div id="toast-notification" class="fixed bottom-5 right-5 p-4 text-gray-900 bg-white rounded-lg shadow dark:bg-gray-800 dark:text-gray-300" role="alert">
+        <div class="flex items-center mb-3">
+            <span class="mb-1 text-sm font-semibold text-gray-900 dark:text-white">New notification from</span>
+            <button type="button" class="ml-auto -mx-1.5 -my-1.5 bg-white justify-center items-center flex-shrink-0 text-gray-400 hover:text-gray-900 rounded-lg focus:ring-2 focus:ring-gray-300 p-1.5 hover:bg-gray-100 inline-flex h-8 w-8 dark:text-gray-500 dark:hover:text-white dark:bg-gray-800 dark:hover:bg-gray-700" data-dismiss-target="#toast-notification" aria-label="Close">
+                <span class="sr-only">Close</span>
+                <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+                </svg>
+            </button>
+        </div>
+        
+      <a href="https://www.github.com/iamDyeus" target="_blank">
+          <div class="flex items-center">
+              <div class="relative inline-block shrink-0">
+                  <img class="w-12 h-12 rounded-full" src="static/assets/toast_image.jpeg" alt="Jese Leos image"/>
+              </div>
+              <div class="ml-3 text-sm font-normal">
+                  <div class="text-sm font-semibold text-gray-900 dark:text-white">Arsh</div>
+                  <div class="text-sm font-normal">Follow me on Github!
+
+
+
+                  </div> 
+                  <span class="text-xs font-medium text-blue-600 dark:text-blue-500">a few seconds ago</span>   
+              </div>
+          </div>
+      </a>
+    </div>
+
+
+
+      <!-- SCRIPTS -->
+      <script> 
+        document.getElementById("year").innerHTML = new Date().getFullYear();
+      </script>
+    </body>
+
+</html>

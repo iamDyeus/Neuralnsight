@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neuralnsight</title>
+    <meta name="description" content="Neuralnsight - Pioneering the Future of Brain Wellness">
+    <meta name="keywords" content="Neuralnsight,Machine Learning, Artificial Intelligence,brain, brain tumor detection, brain tumor">
+    <meta name="author" content="Neuralnsight">
+    <link rel="canonical" href="https://github.com/iamDyeus/neuralnsight">
+
+    <!-- Open Graph Protocol for social media sharing -->
+    <meta property="og:title" content="Neuralnsight - Brain Tumor Detection">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://github.com/iamDyeus/neuralnsight">
+    <meta property="og:image" content="static/assets/brain_cartoon.jpg">
+    <meta property="og:description" content="Neuralnsight - Pioneering the Future of Brain Wellness">
+
+    <!-- Twitter Card for Twitter sharing -->
+    <meta name="twitter:card" content="static/assets/brain_cartoon.jpg">
+    <meta name="twitter:title" content="Neuralnsight - Brain Tumor Detection">
+    <meta name="twitter:description" content="Neuralnsight - Pioneering the Future of Brain Wellness">
+  
+
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
+    <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
+    
+
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.16/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://www.joerezendes.com/projects/Woah.css/woah.css">
+    <script src="{{ url_for('static', filename='js/toast.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.0.0/flowbite.min.js"></script>
+
+      
+    
+    
+  </head>
+<body>
+
+  
+
+  <!-- HERO START -->
+    <div class="bg-white pb-6 sm:pb-8 lg:pb-12 " >
+        <div class="mx-auto max-w-screen-2xl px-4 md:px-8">
+          <header class="mb-8 flex items-center justify-between py-4 md:mb-12 md:py-8 xl:mb-16">
+            <!-- logo - start -->
+            <a href="/" class="inline-flex items-center gap-2.5 text-2xl font-bold text-black md:text-3xl" aria-label="logo">
+              <svg width="95" height="94" viewBox="0 0 95 94" class="h-auto w-6 text-indigo-500" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <!-- image path : "static/assets/brain-icon.svg"-->
+                <image href="static/assets/brain-icon.svg" width="95" height="94" />
+              </svg>
+      
+              Neuralnsight
+            </a>
+            <!-- logo - end -->
+      
+            <!-- nav - start -->
+            <nav class="hidden gap-12 lg:flex">
+              <a href="/" class="text-lg font-semibold text-indigo-500">Home</a>
+              <a href="/model" class="text-lg font-semibold text-gray-600 transition duration-100 hover:text-indigo-500 active:text-indigo-700">Model</a>
+              <a href="#specs" class="text-lg font-semibold text-gray-600 transition duration-100 hover:text-indigo-500 active:text-indigo-700">Specs</a>
+              <a href="#about" class="text-lg font-semibold text-gray-600 transition duration-100 hover:text-indigo-500 active:text-indigo-700">About</a>
+            </nav>
+            <!-- nav - end -->
+
+            
+            <!-- buttons - start -->
+            <a href="#contact" class="hidden rounded-lg bg-gray-200 px-8 py-3 text-center text-sm font-semibold text-gray-500 outline-none ring-indigo-300 transition duration-100 hover:bg-gray-300 focus-visible:ring active:text-gray-700 md:text-base lg:inline-block">Contact</a>
+
+            <button id="dropdownDefaultButton" data-bs-target="dropdown" aria-expanded="true" data-dropdown-toggle="dropdown" 
+            class="lg:hidden text-gray-500 bg-gray-200 hover:text-gray-700 focus:ring-4 focus:outline-none 
+            focus:text-gray-700 font-medium rounded-lg text-sm px-5 py-2.5 text-center 
+            inline-flex items-center dark:text-gray-500 dark:hover:text-gray-500 dark:focus:text-gray-700" 
+            type="button">
+            
+              Menu 
+              <svg class="w-2.5 h-2.5 ml-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/>
+              </svg>
+            </button>
+
+            <!-- Dropdown menu -->
+            <div id="dropdown" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
+              <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefaultButton">
+                <li>
+                  <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Home</a>
+                </li>
+                <li>
+                  <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Model</a>
+                </li>
+                <li>
+                  <a href="#specs" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Specifications</a>
+                </li>
+                <li>
+                  <a href="#contact" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Contact</a>
+                </li>
+              </ul>
+            </div>
+            <!-- buttons - end -->
+          
+          
+          
+          
+          </header>
+                      
+          
+          <section class="flex flex-col justify-between gap-6 sm:gap-10 md:gap-16 lg:flex-row woah fadeIn">
+            <!-- content - start -->
+            <div class="flex flex-col justify-center sm:text-center lg:py-12 lg:text-left xl:w-5/12 xl:py-24 ">
+              <p class="mb-4 font-semibold text-indigo-500 md:mb-6 md:text-lg xl:text-xl ">Proudly Presenting Neuralnsight: </p>
+      
+              <h1 class="mb-8 text-4xl font-bold text-black sm:text-5xl md:mb-12 md:text-6xl">Pioneering the Future of Brain Wellness</h1>
+      
+              <p class="mb-8 leading-relaxed text-gray-500 md:mb-12 lg:w-4/5 xl:text-lg">Unseen, Unheard, Undetected: The silent peril of brain tumors claims lives daily. Let's raise awareness, save lives.</p>
+      
+              <div class="flex flex-col gap-2.5 sm:flex-row sm:justify-center lg:justify-start">
+                <a href="#" class="inline-block rounded-lg bg-indigo-500 px-8 py-3 text-center text-sm font-semibold text-white outline-none ring-indigo-300 transition duration-100 hover:bg-indigo-600 focus-visible:ring active:bg-indigo-700 md:text-base">Test Model</a>
+      
+                <a href="#specs" class="inline-block rounded-lg bg-gray-200 px-8 py-3 text-center text-sm font-semibold text-gray-500 outline-none ring-indigo-300 transition duration-100 hover:bg-gray-300 focus-visible:ring active:text-gray-700 md:text-base">Check Specs</a>
+              </div>
+            </div>
+            <!-- content - end -->
+      
+            <!-- image - start -->
+            <div class="h-40 overflow-hidden rounded-lg bg-gray-100 shadow-lg lg:h-auto xl:w-5/12 woah fadeIn" style="animation-duration: 0.8s;">
+              <img src="static/assets/brain_cartoon.jpg" loading="lazy" alt="A Cute Brain Cartoon" class="h-full w-full object-cover object-center" />
+            </div>
+            <!-- image - end -->
+          </section>
+        </div>
+      </div>
+
+
+      <!-- Model Specifications -->
+      <div id="specs" class="bg-white py-6 sm:py-8 lg:py-12">
+        <div class="mx-auto max-w-screen-xl px-4 md:px-8">
+          <!-- text - start -->
+          <div class="mb-8 md:mb-12">
+            <h2 class="mb-4 text-center text-2xl font-bold text-gray-800 md:mb-6 lg:text-3xl">Model Specifications</h2>
+      
+            <p class="mx-auto max-w-screen-md text-center text-gray-500 md:text-lg">This brain tumor detection model is built on a 
+              state-of-the-art neural network architecture, leveraging deep learning techniques 
+              to analyze complex patterns within medical images. 
+            </br>Below are some Training Details :</p>
+          </div>
+          <!-- text - end -->
+      
+          <div class="grid grid-cols-2 gap-4 md:grid-cols-4 lg:gap-8">
+            <!-- stat - start -->
+            <div class="flex flex-col items-center justify-center rounded-lg bg-gray-100 p-4 lg:p-8 woah pulse">
+              <div class="text-xl font-bold text-indigo-500 sm:text-2xl md:text-3xl">10</div>
+              <div class="text-sm font-semibold sm:text-base">Epochs</div>
+            </div>
+            <!-- stat - end -->
+      
+            <!-- stat - start -->
+            <div class="flex flex-col items-center justify-center rounded-lg bg-gray-100 p-4 md:p-8 woah pulse">
+              <div class="text-xl font-bold text-indigo-500 sm:text-2xl md:text-3xl">96%</div>
+              <div class="text-sm font-semibold sm:text-base">Accuracy</div>
+            </div>
+      
+            <!-- stat - start -->
+            <div class="flex flex-col items-center justify-center rounded-lg bg-gray-100 p-4 md:p-8 woah pulse">
+              <div class="text-xl font-bold text-indigo-500 sm:text-2xl md:text-3xl">High</div>
+              <div class="text-sm font-semibold sm:text-base">Precision</div>
+            </div>
+            <!-- stat - end -->
+      
+            <!-- stat - start -->
+            <a href="https://www.kaggle.com/datasets/ahmedhamada0/brain-tumor-detection">
+              <div class="flex flex-col items-center justify-center rounded-lg bg-gray-100 p-4 md:p-8 woah pulse">
+                <div class="text-xl font-bold text-indigo-500 sm:text-2xl md:text-3xl">Br35H</div>
+                <div class="text-sm font-semibold sm:text-base">Dataset</div>
+              </div>
+            </a>
+            <!-- stat - end -->
+          </div>
+        </div>
+      </div>
+
+
+
+      <!-- ADD TEC STACK WITH MACHINE BRAIN IMAGE, ADD ABOUT AND THEN CONTACT SECTION TOO-->
+      <div class="bg-white py-6 sm:py-8 lg:py-12">
+        <div class="mx-auto max-w-screen-xl px-4 md:px-8 ">
+          <div class="grid gap-8 md:grid-cols-2 lg:gap-12">
+            <div>
+              <div class="h-64 overflow-hidden rounded-lg bg-gray-100 shadow-lg md:h-auto ">
+                <img src="static/assets/mec_brain.webp" loading="lazy" alt="Photo of a Brain with Mechanical Parts" class="h-full w-full object-cover object-center" />
+              </div>
+            </div>
+      
+            <div class="md:pt-8">
+              <p class="text-center font-bold text-indigo-500 md:text-left">Comprehensive</p>
+      
+              <h1 class="mb-4 text-center text-2xl font-bold text-gray-800 sm:text-3xl md:mb-6 md:text-left">Technical Stack</h1>
+      
+              <p class="mb-6 text-gray-500 sm:text-lg md:mb-8">
+                Leveraging OpenCV and PIL for image processing, TensorFlow and Keras for machine learning, 
+                and NumPy with Pathlib for seamless data manipulation, this system ensures efficient handling of medical images and datasets. 
+                The core architecture, based on Convolutional Neural Networks (CNNs), captures intricate patterns in medical images. 
+                Optimized using the Adam optimizer and monitored via TensorBoard, our system delivers precise, 
+                timely, and potentially life-saving results for medical professionals and patients.  
+              </p>
+      
+              <h2 id="about" class="mb-2 text-center text-xl font-semibold text-gray-800 sm:text-2xl md:mb-4 md:text-left">About This Project</h2>
+      
+              <p class="mb-6 text-gray-500 sm:text-lg md:mb-8">
+                I, <a href="#" class="text-indigo-500 underline transition duration-100 hover:text-indigo-600 active:text-indigo-700">Arsh</a><a href="#" class="text-indigo-500 underline transition duration-100 hover:text-indigo-600 active:text-indigo-700"> (@iamDyeus)</a>,
+                independently created this Miniproject for the third semester of my Computer Science Engineering program. I developed a brain tumor detection system using my expertise in image processing and machine learning. Through this project, my goal was to devise a practical and efficient solution for early tumor diagnosis, demonstrating my enthusiasm for technology and healthcare.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>      
+
+
+
+
+      <!-- TOAST NOTIFICATION -->
+      <div id="toast-notification" class="fixed bottom-5 right-5 p-4 text-gray-900 bg-white rounded-lg shadow dark:bg-gray-800 dark:text-gray-300" role="alert">
+        <div class="flex items-center mb-3">
+            <span class="mb-1 text-sm font-semibold text-gray-900 dark:text-white">New notification from</span>
+            <button type="button" class="ml-auto -mx-1.5 -my-1.5 bg-white justify-center items-center flex-shrink-0 text-gray-400 hover:text-gray-900 rounded-lg focus:ring-2 focus:ring-gray-300 p-1.5 hover:bg-gray-100 inline-flex h-8 w-8 dark:text-gray-500 dark:hover:text-white dark:bg-gray-800 dark:hover:bg-gray-700" data-dismiss-target="#toast-notification" aria-label="Close">
+                <span class="sr-only">Close</span>
+                <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+                </svg>
+            </button>  
+        </div>
+        
+        <a href="https://www.linkedin.com/in/arsh03/" target="_blank">
+            <div class="flex items-center">
+                <div class="relative inline-block shrink-0">
+                    <img class="w-12 h-12 rounded-full" src="static/assets/toast_image.jpeg" alt="Jese Leos image"/>
+                </div>
+                <div class="ml-3 text-sm font-normal">
+                    <div class="text-sm font-semibold text-gray-900 dark:text-white">Arsh</div>
+                    <div class="text-sm font-normal">Lets Connect on Linkedln!
+                </div> 
+                <span class="text-xs font-medium text-blue-600 dark:text-blue-500">a few seconds ago</span>   
+             </div>
+          </div>
+      </a>
+    </div>
+
+
+    
+    <div id="contact" class="bg-white py-6 sm:py-8 lg:py-12">
+      <div class="mx-auto max-w-screen-2xl px-4 md:px-8">
+        <div class="mx-auto flex max-w-xl flex-col items-center text-center">
+          <p class="mb-4 font-semibold text-indigo-500 md:mb-6 md:text-lg xl:text-xl">Want to Contact Me ?</p>
+    
+          <h1 class="mb-8 text-3xl font-bold text-black sm:text-4xl md:mb-12 md:text-5xl">Dm me on WhatsApp Right Away.</h1>
+    
+          <div class="flex w-full flex-col gap-2.5 sm:flex-row sm:justify-center">
+            <a href="https://wa.me/+919897085578" target="_blank" class="inline-block rounded-lg bg-indigo-500 px-8 py-3 text-center text-sm font-semibold text-white outline-none ring-indigo-300 transition duration-100 hover:bg-indigo-600 focus-visible:ring active:bg-indigo-700 md:text-base">WhatsApp</a>
+    
+            <a href="mailto:arsh03.2005@gmail.com" class="inline-block rounded-lg bg-gray-200 px-8 py-3 text-center text-sm font-semibold text-gray-500 outline-none ring-indigo-300 transition duration-100 hover:bg-gray-300 focus-visible:ring active:text-gray-700 md:text-base">Email</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    
+
+      
+      <!-- Footer -->
+      {% extends "footer.html" %}
+      
+      
+      
+      <!-- SCRIPTS -->
+      
+
+    </body>
+
+</html>
