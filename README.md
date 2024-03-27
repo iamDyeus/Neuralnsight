@@ -134,3 +134,7 @@ Distributed under the MIT License . See [`LICENSE`](LICENSE) for more informatio
 - Model trained by Tutorial from [`Knowledge Doctor`](https://www.youtube.com/watch?v=pp61TbhJOTg&pp=ygUma25vd2xlZGdlIGRvY3RvciBicmFpbiB0dW1vciBkZXRlY3Rpb24%3D)
 - UI Components from [`tailblocks.cc`](https://tailblocks.cc)
 
+
+## Star History
+[![Star History Chart](https://api.star-history.com/svg?repos=iamDyeus/Neuralnsight&type=Date)](https://star-history.com/#iamDyeus/Neuralnsight&Date)
+
